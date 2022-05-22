@@ -1,0 +1,19 @@
+﻿  FGA_(VS_2012).cpp
+C:\Users\a8000\OneDrive\桌面\碩士\6.機器智慧\HW#2\FGA(VS_2012)\FGA_(VS_2012)\FGA_(VS_2012).cpp(33,23): warning C4305: '正在初始化': 從 'double' 轉換為 'float'，是由較大的類型轉換為較小的類型，可能導致資料遺失
+C:\Users\a8000\OneDrive\桌面\碩士\6.機器智慧\HW#2\FGA(VS_2012)\FGA_(VS_2012)\FGA_(VS_2012).cpp(34,24): warning C4305: '正在初始化': 從 'double' 轉換為 'float'，是由較大的類型轉換為較小的類型，可能導致資料遺失
+C:\Users\a8000\OneDrive\桌面\碩士\6.機器智慧\HW#2\FGA(VS_2012)\FGA_(VS_2012)\FGA_(VS_2012).cpp(148,48): warning C4244: '+=': 將 'double' 轉換為 'float'，由於類型不同，可能導致資料遺失
+C:\Users\a8000\OneDrive\桌面\碩士\6.機器智慧\HW#2\FGA(VS_2012)\FGA_(VS_2012)\FGA_(VS_2012).cpp(150,13): warning C4244: 'return': 將 'double' 轉換為 'float'，由於類型不同，可能導致資料遺失
+C:\Users\a8000\OneDrive\桌面\碩士\6.機器智慧\HW#2\FGA(VS_2012)\FGA_(VS_2012)\FGA_(VS_2012).cpp(159,43): warning C4244: '=': 將 'double' 轉換為 'float'，由於類型不同，可能導致資料遺失
+C:\Users\a8000\OneDrive\桌面\碩士\6.機器智慧\HW#2\FGA(VS_2012)\FGA_(VS_2012)\FGA_(VS_2012).cpp(174,23): warning C4244: '=': 將 'double' 轉換為 'float'，由於類型不同，可能導致資料遺失
+C:\Users\a8000\OneDrive\桌面\碩士\6.機器智慧\HW#2\FGA(VS_2012)\FGA_(VS_2012)\FGA_(VS_2012).cpp(61,37): warning C4244: '=': 將 'double' 轉換為 'Type'，由於類型不同，可能導致資料遺失
+          with
+          [
+              Type=float
+          ]
+C:\Users\a8000\OneDrive\桌面\碩士\6.機器智慧\HW#2\FGA(VS_2012)\FGA_(VS_2012)\FGA_(VS_2012).cpp(235): message : 請參考正在進行編譯的函式 樣板 具現化 'Type mutation<float>(Type,int)'
+          with
+          [
+              Type=float
+          ]
+C:\Users\a8000\OneDrive\桌面\碩士\6.機器智慧\HW#2\FGA(VS_2012)\FGA_(VS_2012)\FGA_(VS_2012).cpp(58,7): warning C4101: 'i': 未參考的區域變數
+  FGA_(VS_2012).vcxproj -> C:\Users\a8000\OneDrive\桌面\碩士\6.機器智慧\HW#2\FGA(VS_2012)\Debug\FGA_(VS_2012).exe
