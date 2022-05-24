@@ -30,18 +30,17 @@ using namespace std;
 #define _number 2     // for tournament selection
 #define _pi 3.14159
 
-float _pmutation = 0.3;          // mutation probability
-float _pcrossover = 0.7;         // crossover probability
+float _pmutation = 0.1;          // mutation probability
+float _pcrossover = 0.1;         // crossover probability
 const int _lchrom = _dimension;  // length of a chromosome
+float FINTNESS = -1;
 
 class Population {
   friend void generation(int, int *);
   friend void Crossover(int, int, int);
   friend void report(float, float, float, char *);
   friend float Eva_Fitness(int, int);
-
   float chrom[_lchrom + 1], sum_fitness;
-
  public:
   float fitness;
   Population() { sum_fitness = 0; }
@@ -51,14 +50,15 @@ class Population {
   void objfunc(float);
 };
 
-inline float max(float a, float b) { return ((a > b) ? a : b); }
+//inline float max(float a, float b) { return ((a > b) ? a : b); }
+inline float max(float a, float b) { return ((a < b) ? a : b); }
 
 template <class Type>
 Type mutation(Type ge, int j) {
   int i;
 
   if (flip(_pmutation)) {
-    ge = (rand() % (20001) - 10000) / 10000.0;  // range: -1 to 1
+    ge = (rand() % (20001) - 10000) / 1000.0;  // range: -10 to 10
     //ge = rand();
     _nmutation = _nmutation + 1;
   }
@@ -79,7 +79,7 @@ int _nmutation = 0, _nncross = 0;
 float _avg, _max, _min;
 
 int _tmain(int argc, _TCHAR *argv[]) {
-  for (int i = 0; i < 1; i++) {
+  for (int i = 0; i < 10; i++) {
     int max, gen;
 
     time_t tt;
@@ -156,7 +156,7 @@ void Population ::initpop() {
   int i;
 
   for (i = 1; i <= _lchrom; i++) {
-    chrom[i] = (rand() % (20001) - 10000) / 10000.0;  // range: -1 to 1
+    chrom[i] = (rand() % (20001) - 10000) / 1000.0;  // range: -10 to 10
     //chrom[i] = rand();  // range: -1 to 1
   }
 }
@@ -189,14 +189,14 @@ int flip(float prob) {
 
 void generation(int _gen, int *max) {
   int i, mate1, mate2;
+  float max_f = -1E8;
   //float max_f = 1E8;
-  float max_f = 1E8;
   float fmax_fit = -1E8, fmin_fit = 1E8;
   float fit, ave_fit = 0;
 
   for (i = 1; i <= _popsize; i++) {
-    //if (_oldpop[i].fitness > max_f)
-    if (_oldpop[i].fitness < max_f) {
+    if (_oldpop[i].fitness > max_f) {
+    //if (_oldpop[i].fitness < max_f) {
       max_f = _oldpop[i].fitness;
       *max = i;
     }  // end if
@@ -262,8 +262,8 @@ int select(int range) {
   max_value = _oldpop[max].fitness;
 
   for (j = 2; j <= _number; j++) {
-    //if (_oldpop[ran[j]].fitness > max_value)
-    if (_oldpop[ran[j]].fitness < max_value) {
+    if (_oldpop[ran[j]].fitness > max_value) {
+    //if (_oldpop[ran[j]].fitness < max_value) {
       max = ran[j];
       max_value = _oldpop[ran[j]].fitness;
     }
@@ -303,13 +303,16 @@ void Save(int max) {
 
   if ((err = fopen_s(&fm, Best_Individual_name, "a")) != 0) exit(1);
   _newpop[max].Save_variable(fm);
-
+  
   fclose(fm);
 
-  if ((err = fopen_s(&fm, Final_pop_name, "w")) != 0) exit(1);
-  for (j = 1; j <= _popsize; j++) _newpop[j].Save_variable(fm);
-
-  fclose(fm);
+  if (_newpop[max].fitness > FINTNESS && _newpop[max].fitness < 1.2) {
+    FINTNESS = _newpop[max].fitness;
+    if ((err = fopen_s(&fm, Final_pop_name, "w")) != 0) exit(1);
+    for (j = 1; j <= _popsize; j++) _newpop[j].Save_variable(fm);
+    fclose(fm);
+  }
+  
 }
 
 void Population::Save_variable(FILE *ft) {
